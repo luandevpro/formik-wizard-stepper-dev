@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { Provider } from "./contexts";
+import { onNextStep } from "./reducers";
 
 export default class AppContext extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			activeStepIndex: 0,
+			values: {
+				email: "",
+				categoryIds: [],
+				languages: [],
+			},
 			languages: [{ name: "EN" }, { name: "VI" }, { name: "CN" }],
 			categories: [
 				{
@@ -23,6 +30,8 @@ export default class AppContext extends Component {
 						"https://a0.muscache.com/im/pictures/82b8bcf5-1210-4229-956f-8e9a606db11f.jpg?aki_policy=x_large",
 				},
 			],
+			dispatchOnNextStep: action =>
+				this.setState(state => onNextStep(state, action)),
 		};
 	}
 	render() {

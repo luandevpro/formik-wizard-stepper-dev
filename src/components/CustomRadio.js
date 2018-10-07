@@ -2,6 +2,8 @@ import React from "react";
 import { ErrorMessage } from "formik";
 import styled from "styled-components";
 
+var languages = [];
+
 export default ({ values, arrayHelpers, languages }) => (
 	<div>
 		{languages.map((languages, index) => (

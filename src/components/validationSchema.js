@@ -5,8 +5,8 @@ export const validationSchema = () =>
 		email: Yup.string()
 			.email("Email not valid")
 			.required("Email is Required"),
-		categoryIds: Yup.array().required("At least one color is required"),
-		languages: Yup.array().required("At least one languages"),
+		// categoryIds: Yup.array().required("At least one color is required"),
+		// languages: Yup.array().required("At least one languages"),
 		// friends: Yup.array()
 		// 	.of(
 		// 		Yup.object().shape({
