@@ -1,23 +1,26 @@
 import React from "react";
-import ReactJson from "react-json-view";
 import { ErrorMessage } from "formik";
 import styled from "styled-components";
 
-export default ({ arrayHelpers, values, categories }) => (
+export default props => (
 	<CustomGrip>
-		{categories.map((category, index) => (
+		{props.categories.map((category, index) => (
 			<CustomWrapper key={index}>
 				<input
 					name="categoryIds"
 					type="checkbox"
 					id={category.name}
 					value={category.name}
-					checked={values.categoryIds.includes(category.name)}
+					checked={props.arrayHelpers.form.values.categoryIds.includes(
+						category.name
+					)}
 					onChange={e => {
-						if (e.target.checked) arrayHelpers.push(category.name);
+						if (e.target.checked) props.arrayHelpers.push(category.name);
 						else {
-							const idx = values.categoryIds.indexOf(category.name);
-							arrayHelpers.remove(idx);
+							const idx = props.arrayHelpers.form.values.categoryIds.indexOf(
+								category.name
+							);
+							props.arrayHelpers.remove(idx);
 						}
 					}}
 				/>

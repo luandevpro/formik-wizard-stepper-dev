@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { Form, Field, FieldArray } from "formik";
+import { Form } from "formik";
 import * as Types from "../constants/ActionTypes";
-import CustomInput from "./CustomInput";
-import ReactJson from "react-json-view";
-import CustomCheckbox from "./CustomCheckbox";
-import CustomRadio from "./CustomRadio";
 
 export default class FormField extends Component {
 	render() {
@@ -25,7 +21,7 @@ export default class FormField extends Component {
 							onClick={() =>
 								this.props.dispatchOnNextStep({
 									type: Types.ON_NEXT_STEP,
-									payload: 1,
+									payload: -1,
 								})
 							}
 						>

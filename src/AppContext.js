@@ -32,6 +32,8 @@ export default class AppContext extends Component {
 			],
 			dispatchOnNextStep: action =>
 				this.setState(state => onNextStep(state, action)),
+			dispatchOnPrevious: action =>
+				this.setState(state => onNextStep(state, action)),
 		};
 	}
 	render() {

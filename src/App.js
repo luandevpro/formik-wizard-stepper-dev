@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import AppContext from "./AppContext";
 import FormWizardContainer from "./containers/FormWizardContainer";
-import Email from "./components/stepper/Email";
+import {
+	emailValidator,
+	languageValidator,
+	songValidator,
+} from "./components/form/validation";
+import EmailContainer from "./containers/stepperContainers/EmailContainer";
 import LanguageContainer from "./containers/stepperContainers/LanguageContainer";
+import SongContainer from "./containers/stepperContainers/SongContainer";
 
 class App extends Component {
 	render() {
 		return (
 			<AppContext>
 				<FormWizardContainer>
-					<Email />
-					<LanguageContainer />
-					<h1>hello 3</h1>
-					<h1>hello 4</h1>
+					<EmailContainer validate={emailValidator} />
+					<LanguageContainer validate={languageValidator} />
+					<SongContainer validate={songValidator} />
 				</FormWizardContainer>
 			</AppContext>
 		);

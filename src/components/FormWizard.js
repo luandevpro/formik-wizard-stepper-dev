@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
-import { validationSchema } from "./validationSchema";
-import FormField from "./FormField";
 import * as Types from "../constants/ActionTypes";
 
 export default class FormWizard extends Component {
@@ -14,12 +12,11 @@ export default class FormWizard extends Component {
 		};
 	}
 	handleSubmit = (value, bag) => {
-		let totalPage = this.props.children.props.children.length;
 		let isLastPage =
 			this.props.activeStepIndex ===
 			this.props.children.props.children.length - 1;
 		if (isLastPage) {
-			alert("abc");
+			alert(JSON.stringify(value, 2, null));
 		} else {
 			this.props.dispatchOnNextStep({
 				type: Types.ON_NEXT_STEP,
@@ -28,13 +25,20 @@ export default class FormWizard extends Component {
 			bag.setSubmitting(false);
 		}
 	};
+	validate = values => {
+		const activePage = React.Children.toArray(
+			this.props.children.props.children
+		)[this.props.activeStepIndex];
+		// console.log(activePage.props.validate(values));
+		return activePage.props.validate ? activePage.props.validate(values) : {};
+	};
 	render() {
 		var { email, categoryIds, languages } = this.state;
 		const { children } = this.props;
 		return (
 			<Formik
 				initialValues={{ email, categoryIds, languages }}
-				validationSchema={validationSchema}
+				validate={this.validate}
 				onSubmit={this.handleSubmit}
 			>
 				{children}
